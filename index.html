@@ -36,7 +36,7 @@
               placeholder="Joe Rogan"
               required
           /></label>
-          <p id="fullname-error" class="error-message visible">
+          <p id="fullname-error" class="error-message">
             Must contain at least 2 words.
           </p>
         </div>
@@ -84,7 +84,14 @@
         </div>
         <div>
           <label for="age"
-            >Age <input type="number" name="user-age" id="age" required
+            >Age
+            <input
+              type="number"
+              name="user-age"
+              id="age"
+              min="1"
+              max="100"
+              required
           /></label>
           <p id="age-error" class="error-message">You must be at least 18.</p>
         </div>
