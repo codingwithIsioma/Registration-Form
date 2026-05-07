@@ -1,0 +1,166 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --main-background: #f0f0f0;
+  --card-background: #ffffff;
+  --card-border: #e8e8e8;
+  --main-color: #111111;
+  --subtitle-color: #999999;
+  --label-text: #444444;
+  --input-border: #dddddd;
+  --error-color: #e05555;
+  --error-background: #fff8f8;
+  --success-border: #b6e8cc;
+  --success-background: #f3fcf7;
+  --success-message: #2a7a52;
+  --main-font: "Inter", sans-serif;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  background-color: var(--main-background);
+  font-family: var(--main-font);
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main {
+  width: 90vw;
+  margin: 2rem auto;
+  background-color: var(--card-background);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 2rem;
+}
+
+/* Form Header */
+h2 {
+  font-size: 1.4rem;
+  color: var(--main-color);
+  font-weight: 600;
+}
+
+.subtitle {
+  font-size: 0.85rem;
+  color: var(--subtitle-color);
+  margin: 0.3rem 0 1.8rem 0;
+}
+
+/* Form Inputs and Error Messages */
+
+form div {
+  margin: 0.5rem 0 1.5rem 0;
+}
+
+label {
+  display: block;
+  color: var(--main-color);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+input {
+  width: 100%;
+  height: 2.7rem;
+  padding: 0.5rem 0.7rem;
+  margin-top: 0.5rem;
+  color: var(--label-text);
+  font-size: 1rem;
+  border: 1px solid var(--input-border);
+  border-radius: 10px;
+}
+
+input[type="password"] {
+  letter-spacing: 2px;
+}
+
+input::placeholder {
+  font-size: 0.9rem;
+  letter-spacing: 0;
+  color: #bbbbbb;
+}
+
+input:focus {
+  outline: none;
+  border: 1px solid var(--main-color);
+}
+
+/* Dynamically add error border and error message when input is invalid */
+.error-border:focus {
+  border: 1px solid var(--error-color);
+  background-color: var(--error-background);
+}
+
+/* Use "display: block" on unique input id in javascript to show this */
+.error-message {
+  color: var(--error-color);
+  font-size: 0.7rem;
+  margin: 0.35rem 0;
+  display: none;
+}
+
+/* Dynamically show success border if it passes validation */
+.success-border:focus {
+  border: 1px solid var(--success-border);
+  background-color: var(--success-background);
+}
+
+/* Success message - dynamically shows after submit button is hit and everything has validated */
+.success-message {
+  width: 100%;
+  background-color: var(--success-background);
+  color: var(--success-message);
+  font-size: 0.8rem;
+  border-radius: 10px;
+  border: 1px solid var(--success-border);
+  margin-top: 0;
+  margin-bottom: 1rem;
+  padding: 1rem 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  display: none;
+}
+
+.success-message i {
+  color: #3cb97a;
+  font-size: 1rem;
+}
+
+/* Sign Up Button */
+
+#submit-btn {
+  width: 100%;
+  height: 2.5rem;
+  font-size: 0.938rem;
+  color: var(--card-background);
+  background-color: var(--main-color);
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.registered {
+  color: var(--subtitle-color);
+  font-size: 0.7rem;
+  text-align: center;
+}
+
+.registered a {
+  color: var(--main-color);
+  text-decoration: none;
+}
+
+@media screen and (min-width: 768px) {
+  main {
+    max-width: 450px;
+  }
+}
