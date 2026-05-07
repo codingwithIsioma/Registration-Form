@@ -3,9 +3,95 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>User Registration</title>
+    <title>Sign Up - Chesify</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/6a9f6daa92.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="script.js" defer></script>
   </head>
-  <body></body>
+  <body>
+    <main>
+      <h2>Create account</h2>
+      <p class="subtitle">Fill in your details to register.</p>
+      <div class="success-message">
+        <i class="fa-solid fa-circle-check"></i>
+        <p>Welcome! Account created successfully.</p>
+      </div>
+      <form id="user-registration" method="post" action="">
+        <div>
+          <label for="fullname"
+            >Full Name
+            <input
+              type="text"
+              name="fullname"
+              id="fullname"
+              placeholder="Joe Rogan"
+              required
+          /></label>
+          <p id="fullname-error" class="error-message visible">
+            Must contain at least 2 words.
+          </p>
+        </div>
+        <div>
+          <label for="email"
+            >Email Address
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="example@domain.com"
+              required
+          /></label>
+          <p id="email-error" class="error-message">
+            Enter a valid email address.
+          </p>
+        </div>
+        <div>
+          <label for="password"
+            >Password
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Minimum 8 characters"
+              required
+          /></label>
+          <p id="password-error" class="error-message">
+            Must contain one uppercase letter, one special character.
+          </p>
+        </div>
+        <div>
+          <label for="confirm-pswrd"
+            >Confirm Password
+            <input
+              type="password"
+              name="confirm-pswrd"
+              id="confirm-pswrd"
+              placeholder="Repeat your password"
+              required
+          /></label>
+          <p id="confirm-error" class="error-message">
+            Password doesn't match.
+          </p>
+        </div>
+        <div>
+          <label for="age"
+            >Age <input type="number" name="user-age" id="age" required
+          /></label>
+          <p id="age-error" class="error-message">You must be at least 18.</p>
+        </div>
+
+        <button type="submit" id="submit-btn">Sign Up</button>
+      </form>
+      <p class="registered">Already have an account? <a>Sign In</a></p>
+    </main>
+  </body>
 </html>
