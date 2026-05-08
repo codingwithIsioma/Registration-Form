@@ -26,44 +26,21 @@ let isConfirmPasswordValid = false;
 let isAgeValid = false;
 
 // Full Name Validator
+let fullNameInput;
 fullName.addEventListener("input", (e) => {
-  let fullNameInput = e.target.value;
-
-  if (!validateFullName(fullNameInput)) {
-    fullName.classList.remove("success-border");
-    fullName.classList.add("error-border");
-    fullNameError.style.display = "block";
-  } else {
-    fullNameError.style.display = "none";
-    fullName.classList.add("success-border");
+  fullNameInput = e.target.value;
+  if (
+    validatorFunction(fullNameInput, validateFullName, fullName, fullNameError)
+  ) {
     isFullNameValid = true;
-  }
-
-  if (!fullNameInput) {
-    fullName.classList.remove("error-border");
-    fullName.classList.remove("success-border");
-    fullNameError.style.display = "none";
   }
 });
 
 // Email Validator
 email.addEventListener("input", (e) => {
   let emailInput = e.target.value;
-
-  if (!validateEmail(emailInput)) {
-    email.classList.remove("success-border");
-    email.classList.add("error-border");
-    emailError.style.display = "block";
-  } else {
-    emailError.style.display = "none";
-    email.classList.add("success-border");
+  if (validatorFunction(emailInput, validateEmail, email, emailError)) {
     isEmailValid = true;
-  }
-
-  if (!emailInput) {
-    email.classList.remove("error-border");
-    email.classList.remove("success-border");
-    emailError.style.display = "none";
   }
 });
 
@@ -71,43 +48,25 @@ email.addEventListener("input", (e) => {
 let passwordInput;
 password.addEventListener("input", (e) => {
   passwordInput = e.target.value;
-
-  if (!validatePassword(passwordInput)) {
-    password.classList.remove("success-border");
-    password.classList.add("error-border");
-    passwordError.style.display = "block";
-  } else {
-    password.classList.add("success-border");
-    passwordError.style.display = "none";
+  if (
+    validatorFunction(passwordInput, validatePassword, password, passwordError)
+  ) {
     isPasswordValid = true;
-  }
-
-  if (!passwordInput) {
-    password.classList.remove("success-border");
-    password.classList.remove("error-border");
-    passwordError.style.display = "none";
   }
 });
 
 // Confirm Password Validator
 confirmPswrd.addEventListener("input", (e) => {
   let confirmPasswordInput = e.target.value;
-
-  if (!validateConfirmPassword(confirmPasswordInput)) {
-    confirmPswrd.classList.remove("success-border");
-    confirmPswrd.classList.add("error-border");
-    confirmError.style.display = "block";
-    isConfirmPasswordValid = false;
-  } else {
-    confirmPswrd.classList.add("success-border");
-    confirmError.style.display = "none";
+  if (
+    validatorFunction(
+      confirmPasswordInput,
+      validateConfirmPassword,
+      confirmPswrd,
+      confirmError,
+    )
+  ) {
     isConfirmPasswordValid = true;
-  }
-
-  if (!confirmPasswordInput) {
-    confirmPswrd.classList.remove("success-border");
-    confirmPswrd.classList.remove("error-border");
-    confirmError.style.display = "none";
   }
 });
 
@@ -115,27 +74,14 @@ confirmPswrd.addEventListener("input", (e) => {
 age.addEventListener("input", (e) => {
   let ageInput = Number(e.target.value);
 
-  if (!validateAge(ageInput)) {
-    age.classList.remove("success-border");
-    age.classList.add("error-border");
-    ageError.style.display = "block";
-  } else {
-    age.classList.add("success-border");
-    ageError.style.display = "none";
+  if (validatorFunction(ageInput, validateAge, age, ageError)) {
     isAgeValid = true;
-  }
-
-  if (!ageInput) {
-    age.classList.remove("success-border");
-    age.classList.remove("error-border");
-    ageError.style.display = "none";
   }
 });
 
 // Handles Form submission
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  console.log("hey");
   if (
     isFullNameValid &&
     isEmailValid &&
@@ -146,6 +92,27 @@ form.addEventListener("submit", (e) => {
     successMessage.style.display = "flex";
   }
 });
+
+/* ***REFACTOR*** - Instead of repetitively calling the same error message class over all the inputs, just put it in a simple function and pass
+ in the values for each input, makes it easier to read and less clustered.
+*/
+const validatorFunction = (input, validateFunc, inputElem, inputError) => {
+  if (!validateFunc(input)) {
+    inputElem.classList.remove("success-border");
+    inputElem.classList.add("error-border");
+    inputError.style.display = "block";
+  } else {
+    inputElem.classList.add("success-border");
+    inputError.style.display = "none";
+    return true;
+  }
+
+  if (!input) {
+    inputElem.classList.remove("success-border");
+    inputElem.classList.remove("error-border");
+    inputError.style.display = "none";
+  }
+};
 
 // Validation Functions for each input
 const validateFullName = (fullname) => {
@@ -184,7 +151,7 @@ const validatePassword = (password) => {
   and one special character with a minimum of 8 characters in total
   */
   const digit = /[0-9]/;
-  const upperAndLowerCase = /[a-zA-Z]/;
+  const upperAndLowerCase = /[A-Z]/;
   const specialCharacters = /[!@#$%^&*]/;
   if (
     password.length < 8 ||
@@ -192,7 +159,8 @@ const validatePassword = (password) => {
       digit.test(password) &&
       upperAndLowerCase.test(password) &&
       specialCharacters.test(password)
-    )
+    ) ||
+    password.includes(" ")
   ) {
     return false;
   }
