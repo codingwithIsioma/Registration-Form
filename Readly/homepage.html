@@ -14,10 +14,115 @@
   </head>
   <body>
     <div class="page">
-      <header class="site-header">Header</header>
-      <div class="hero-section">Greetings, fair maiden/kind sire!</div>
-      <main class="article-section">Articles</main>
-      <aside class="browse-content">Browse Content</aside>
+      <header class="site-header">
+        <nav>
+          <h2 class="logo">Readly</h2>
+          <div class="avatar" id="avatar">AL</div>
+        </nav>
+      </header>
+      <div class="hero-section">
+        <div class="hero-greeting">
+          <p class="greeting" id="greetingText">GOOD MORNING, ADA LOVELACE</p>
+          <h1 class="hero-text">What will you <span>read</span> today?</h1>
+          <p class="hero-subtext">
+            Curated articles, essays, and stories picked just for you - based on
+            what you love.
+          </p>
+        </div>
+      </div>
+      <main>
+        <div class="article-section">
+          <h4 class="section-heading">TOP PICKS FOR YOU</h4>
+          <div class="article">
+            <span class="article-num">01</span>
+            <div class="article-body">
+              <p class="article-tag">DESIGN</p>
+              <p class="article-title">
+                Why the best interfaces feel invisible
+              </p>
+              <p class="article-excerpt">
+                Great design isn't about what you add — it's about what you
+                leave out. A look at the principles behind the world's most
+                effortless products.
+              </p>
+              <span class="article-meta">6 min read · Tom Forde</span>
+            </div>
+          </div>
+          <div class="article">
+            <span class="article-num">02</span>
+            <div class="article-body">
+              <p class="article-tag">CULTURE</p>
+              <p class="article-title">On slowness as a radical act</p>
+              <p class="article-excerpt">
+                In a world optimised for speed, choosing to go slow has become
+                one of the most countercultural things a person can do.
+              </p>
+              <span class="article-meta">8 min read · Lena Taylor</span>
+            </div>
+          </div>
+          <div class="article">
+            <span class="article-num">03</span>
+            <div class="article-body">
+              <p class="article-tag">TECHNOLOGY</p>
+              <p class="article-title">The quiet return of the open web</p>
+              <p class="article-excerpt">
+                Amid the noise of social platforms and algorithmic feeds, a
+                growing number of writers and readers are finding their way back
+                to the personal web.
+              </p>
+              <span class="article-meta">4 min read · Jack Grealish</span>
+            </div>
+          </div>
+        </div>
+        <aside class="browse-content">
+          <h4 class="section-heading">BROWSE TOPICS</h4>
+
+          <div class="topic">
+            <span class="topic-name">Design</span>
+            <span class="topic-count">142 articles</span>
+          </div>
+          <div class="topic">
+            <span class="topic-name">Technology</span>
+            <span class="topic-count">98 articles</span>
+          </div>
+          <div class="topic">
+            <span class="topic-name">Culture</span>
+            <span class="topic-count">76 articles</span>
+          </div>
+          <div class="topic">
+            <span class="topic-name">Science</span>
+            <span class="topic-count">54 articles</span>
+          </div>
+          <div class="topic">
+            <span class="topic-name">Philosophy</span>
+            <span class="topic-count">41 articles</span>
+          </div>
+        </aside>
+      </main>
     </div>
+
+    <script>
+      // grab fullname of validated user from the query params in the url
+      const params = new URLSearchParams(window.location.search);
+      const name = params.get("name") || "John Doe";
+      // split the name by a space, then get just the first char of each name and join
+      const initials = name
+        .split(" ")
+        .map((w) => w[0])
+        .join("")
+        .toUpperCase();
+      // get current time from system, then check if its morning, afternoon or evening with the 24-hour format
+      const hour = new Date().getHours();
+      const timeOfDay =
+        hour < 12
+          ? "GOOD MORNING"
+          : hour < 17
+            ? "GOOD AFTERNOON"
+            : "GOOD EVENING";
+
+      document.getElementById("greetingText").textContent =
+        `${timeOfDay}, ${name}`;
+      document.getElementById("avatar").textContent = `${initials}`;
+    </script>
   </body>
 </html>

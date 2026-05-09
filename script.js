@@ -90,6 +90,10 @@ form.addEventListener("submit", (e) => {
     isAgeValid
   ) {
     successMessage.style.display = "flex";
+    // Extra Feature: Redirects to a simple homepage, to show the user successfully validated and created their account
+    setTimeout(() => {
+      window.location.href = `Readly/homepage.html?name=${fullNameInput}`;
+    }, 3000);
   }
 });
 
