@@ -33,6 +33,8 @@ fullName.addEventListener("input", (e) => {
     validatorFunction(fullNameInput, validateFullName, fullName, fullNameError)
   ) {
     isFullNameValid = true;
+  } else {
+    isFullNameValid = false;
   }
 });
 
@@ -41,6 +43,8 @@ email.addEventListener("input", (e) => {
   let emailInput = e.target.value;
   if (validatorFunction(emailInput, validateEmail, email, emailError)) {
     isEmailValid = true;
+  } else {
+    isEmailValid = false;
   }
 });
 
@@ -52,6 +56,8 @@ password.addEventListener("input", (e) => {
     validatorFunction(passwordInput, validatePassword, password, passwordError)
   ) {
     isPasswordValid = true;
+  } else {
+    isPasswordValid = false;
   }
 });
 
@@ -67,6 +73,8 @@ confirmPswrd.addEventListener("input", (e) => {
     )
   ) {
     isConfirmPasswordValid = true;
+  } else {
+    isConfirmPasswordValid = false;
   }
 });
 
@@ -76,6 +84,8 @@ age.addEventListener("input", (e) => {
 
   if (validatorFunction(ageInput, validateAge, age, ageError)) {
     isAgeValid = true;
+  } else {
+    isAgeValid = false;
   }
 });
 
