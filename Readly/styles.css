@@ -1,4 +1,6 @@
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -14,31 +16,248 @@
   --border-color: #e8e4de;
 }
 
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 body {
   width: 100%;
   height: 100vh;
   background-color: var(--background-color);
   color: var(--primary-text);
+  font-family: var(--main-font);
+  font-size: 16px;
 }
 
-.page {
+nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  padding: 1.3rem 1.2rem;
+}
+
+nav h2 {
+  color: var(--primary-text);
+  font-family: var(--secondary-font);
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+nav .avatar {
+  background-color: var(--primary-text);
+  width: 35px;
+  height: 35px;
+  color: #fff;
+  font-size: 0.8rem;
+  margin-right: 1.2rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Hero Section */
+
+.hero-section {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.hero-greeting {
+  animation: fadeUp 0.6s ease both;
+  margin: 0 1.2rem;
+}
+
+.greeting {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--muted-text);
+  letter-spacing: 1px;
+  margin: 1.7rem 0 1rem 0;
+  text-transform: uppercase;
+}
+
+.hero-text {
+  font-size: 1.8rem;
+  font-family: var(--secondary-font);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  letter-spacing: -1px;
+  line-height: 1.2;
+  max-width: 600px;
+}
+
+.hero-text span {
+  font-style: italic;
+  color: var(--muted-text);
+  font-weight: 500;
+}
+
+.hero-subtext {
+  color: var(--muted-text);
+  font-size: 0.88rem;
+  margin-bottom: 1.4rem;
+  line-height: 1.7;
+  font-weight: 400;
+  max-width: 480px;
+}
+
+main {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 64px 200px 1fr 1fr;
-  grid-template-areas:
-    "header"
-    "div"
-    "main"
-    "aside";
+}
+
+/* Article Section */
+
+.article-section {
+  margin: 0 1.2rem;
+}
+
+.section-heading {
+  color: var(--muted-text);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin: 1.5rem 0 1rem 0;
+}
+
+.article {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  animation: fadeUp 0.6s ease both;
+}
+
+.article:nth-child(2) {
+  animation-delay: 0.05s;
+}
+.article:nth-child(3) {
+  animation-delay: 0.1s;
+}
+.article:nth-child(4) {
+  animation-delay: 0.15s;
+}
+
+.article-num {
+  color: var(--muted-text);
+  font-size: 0.72rem;
+}
+
+.article-body {
+  margin-bottom: 1.5rem;
+}
+
+.article-tag {
+  color: var(--muted-text);
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin: 0 0 0.5rem;
+}
+
+.article-title {
+  font-family: var(--secondary-font);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.article-title:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.article-excerpt {
+  color: var(--muted-text);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.1px;
+  line-height: 1.7;
+  margin-bottom: 0.5rem;
+}
+
+.article-meta {
+  color: var(--very-muted-text);
+  font-size: 0.6rem;
+}
+
+/* BROWSE TOPICS SECTION */
+.browse-content {
+  margin: 0 1.2rem;
+}
+
+.topic {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+
+.topic:hover .topic-name {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.topic-count {
+  color: var(--muted-text);
+  font-size: 0.72rem;
 }
 
 @media screen and (min-width: 768px) {
-  .page {
-    grid-template-columns: 1fr 500px;
-    grid-template-rows: 64px 200px 1fr;
-    grid-template-areas:
-      "header"
-      "div"
-      "main aside";
+  nav {
+    padding: 1.5rem 3rem;
+  }
+
+  .hero-greeting {
+    margin: 0 3rem;
+  }
+
+  .greeting {
+    font-size: 0.9rem;
+    margin: 3rem 0 1rem 0;
+  }
+
+  .hero-text {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+  }
+
+  .hero-subtext {
+    margin-bottom: 2rem;
+  }
+
+  main {
+    grid-template-columns: 1fr 280px;
+  }
+
+  .article-section {
+    margin: 0;
+    padding: 1.5rem 3rem;
+    border-right: 1px solid var(--border-color);
+  }
+
+  .section-heading {
+    font-size: 0.7rem;
+    margin: 1.5rem 0;
+    font-weight: 500;
+  }
+
+  .browse-content {
+    padding: 1.5rem 0.5rem;
   }
 }
