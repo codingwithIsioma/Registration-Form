@@ -110,7 +110,8 @@
         .split(" ")
         .map((w) => w[0])
         .join("")
-        .toUpperCase();
+        .toUpperCase()
+        .slice(0, 2);
       // get current time from system, then check if its morning, afternoon or evening with the 24-hour format
       const hour = new Date().getHours();
       const timeOfDay =
